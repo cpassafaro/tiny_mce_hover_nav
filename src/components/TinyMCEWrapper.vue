@@ -4,6 +4,7 @@
       :key="seed"
       api-key="0hpgd4n0xdiraxwsc7gvstlowu1x0rkqvcy8xvktjlyusly8"
       :init="config"
+      @click="onEditorFocus"
       @onfocus="onEditorFocus"
       v-click-outside="{
         handler: onClickOutside,
@@ -93,6 +94,7 @@ export default {
   },
   methods: {
     onEditorFocus() {
+      console.log('on editor focus')
       if (!this.focus) {
         // need to set up crypto key
         this.seed = this.seed + 1;
