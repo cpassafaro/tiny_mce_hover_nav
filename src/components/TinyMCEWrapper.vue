@@ -1,8 +1,14 @@
 <template>
-  <div id="app">
+  <div class="include">
     <editor
+      :key="seed"
       api-key="0hpgd4n0xdiraxwsc7gvstlowu1x0rkqvcy8xvktjlyusly8"
       :init="config"
+      @onfocus="onEditorFocus"
+      v-click-outside="{
+        handler: onClickOutside,
+        include,
+      }"
     />
   </div>
 </template>
@@ -33,6 +39,7 @@ export default {
   data() {
     return {
       focus: false,
+      seed: "",
     };
   },
   computed: {
@@ -82,6 +89,26 @@ export default {
           font_size_formats: "8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt",
         };
       }
+    },
+  },
+  methods: {
+    onEditorFocus() {
+      if (!this.focus) {
+        // need to set up crypto key
+        this.seed = this.seed + 1;
+        this.focus = true;
+      }
+    },
+    onClickOutside() {
+      if (this.focus) {
+        // need to set up crypto key
+        this.seed = this.seed + 1;
+        this.focus = false;
+      }
+    },
+    include() {
+      // vuetify function to include an element with this class into clickable area without close
+      return [document.querySelector(".included")];
     },
   },
 };
