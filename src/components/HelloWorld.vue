@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <editor api-key="no-api-key" :init="config" />
+    <editor
+      api-key="0hpgd4n0xdiraxwsc7gvstlowu1x0rkqvcy8xvktjlyusly8"
+      :init="config"
+    />
   </div>
 </template>
 
